@@ -8,7 +8,10 @@ import dagger.android.support.AndroidSupportInjectionModule
 import io.demoapps.comic_characters.BaseApplication
 
 @Component(
-    modules = [AndroidSupportInjectionModule::class]
+    modules = [
+        AndroidSupportInjectionModule::class,
+        ActivityBuildersModule::class
+    ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
 
