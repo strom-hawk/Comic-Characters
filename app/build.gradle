@@ -59,4 +59,13 @@ dependencies {
     // VIEW MODEL AND LIVE DATA
     def lifecycle_version = '2.2.0-alpha03'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //RETROFIT
+    def retrofit_version = '2.5.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //OKHTTP LOGGING
+    def logging_interceptor_version = '3.10.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 }

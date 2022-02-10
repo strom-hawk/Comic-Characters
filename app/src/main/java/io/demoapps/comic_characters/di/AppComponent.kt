@@ -6,7 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import io.demoapps.comic_characters.BaseApplication
-import io.demoapps.comic_characters.di.auth.AuthViewModelModule
+import io.demoapps.comic_characters.di.auth.AuthModule
 import javax.inject.Singleton
 
 @Singleton
@@ -14,6 +14,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
+        AuthModule::class,
         AppModule::class,
         ViewModelFactoryModule::class
     ]
