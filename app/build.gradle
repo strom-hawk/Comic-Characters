@@ -68,4 +68,12 @@ dependencies {
     //OKHTTP LOGGING
     def logging_interceptor_version = '3.10.0'
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
+
+    //RXJAVA
+    def rx_java_version = '3.0.0'
+    implementation "io.reactivex.rxjava3:rxjava:$rx_java_version"
+
+    // RX-RETROFIT CALL ADAPTER
+    def rx_call_adapter_version = '2.5.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rx_call_adapter_version"
 }

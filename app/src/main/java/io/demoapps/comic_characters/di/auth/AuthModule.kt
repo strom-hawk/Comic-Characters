@@ -2,11 +2,8 @@ package io.demoapps.comic_characters.di.auth
 
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
-import io.demoapps.comic_characters.di.network.auth.AuthApi
+import io.demoapps.comic_characters.network.auth.AuthApi
 import retrofit2.Retrofit
-import retrofit2.create
-import javax.inject.Singleton
 
 @Module
 object AuthModule {
