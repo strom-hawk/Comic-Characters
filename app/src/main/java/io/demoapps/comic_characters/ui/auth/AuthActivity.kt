@@ -3,9 +3,11 @@ package io.demoapps.comic_characters.ui.auth
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import io.demoapps.comic_characters.R
+import io.demoapps.comic_characters.models.User
 import io.demoapps.comic_characters.ui.base.BaseActivity
 import io.demoapps.comic_characters.viewmodel.ViewModelProvidersFactory
 import javax.inject.Inject
@@ -33,7 +35,8 @@ class AuthActivity : BaseActivity() {
 
     private fun initVariables() {
         viewModel = ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
-        viewModel.check()
+        subscribeObserver()
+        viewModel.authenticateWithId(1)
     }
 
     private fun initViews() {
@@ -45,5 +48,15 @@ class AuthActivity : BaseActivity() {
         requestManager
             .load(dummyImageUrl)
             .into(ivLoginLogo)
+    }
+
+    private fun subscribeObserver() {
+        viewModel.observeAuthUser().observe(this, object : Observer<User> {
+            override fun onChanged(user: User?) {
+                if (user != null) {
+                    println("--------------:${user.userEmail}")
+                }
+            }
+        })
     }
 }
