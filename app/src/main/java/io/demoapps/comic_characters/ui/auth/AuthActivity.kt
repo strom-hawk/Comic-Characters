@@ -36,7 +36,7 @@ class AuthActivity : BaseActivity() {
     private fun initVariables() {
         viewModel = ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
         subscribeObserver()
-        viewModel.authenticateWithId(1)
+        viewModel.authenticateWithId(11)
     }
 
     private fun initViews() {
@@ -51,10 +51,23 @@ class AuthActivity : BaseActivity() {
     }
 
     private fun subscribeObserver() {
-        viewModel.observeAuthUser().observe(this, object : Observer<User> {
-            override fun onChanged(user: User?) {
-                if (user != null) {
-                    println("--------------:${user.userEmail}")
+        viewModel.observeAuthUser().observe(this, object : Observer<AuthResource<User>> {
+            override fun onChanged(userAuthResource: AuthResource<User>?) {
+                if (userAuthResource != null) {
+                    when (userAuthResource.status) {
+                        AuthResource.AuthStatus.LOADING -> {
+                            println("--------------show progressbar")
+                        }
+                        AuthResource.AuthStatus.ERROR -> {
+                            println("--------------hide progressbar, error")
+                        }
+                        AuthResource.AuthStatus.AUTHENTICATED -> {
+                            println("--------------hide progressbar, user authenticated")
+                        }
+                        AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
+                            println("--------------hide progressbar, user not authenticated")
+                        }
+                    }
                 }
             }
         })

@@ -19,5 +19,4 @@ data class User(
     @Expose
     @SerializedName("website")
     val userWebSite: String
-) {
-}
+)
