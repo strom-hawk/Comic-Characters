@@ -8,6 +8,10 @@ import dagger.android.support.AndroidSupportInjectionModule
 import io.demoapps.comic_characters.BaseApplication
 import io.demoapps.comic_characters.di.auth.AuthModule
 import javax.inject.Singleton
+import io.demoapps.comic_characters.SessionManager
+
+
+
 
 @Singleton
 @Component(
@@ -20,6 +24,8 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
+
+    fun sessionManager(): SessionManager
 
     @Component.Builder
     interface Builder {

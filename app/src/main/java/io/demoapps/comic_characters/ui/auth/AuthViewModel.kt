@@ -8,8 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class AuthViewModel
-@Inject constructor(
+class AuthViewModel @Inject constructor(
     private val authApi: AuthApi
 ) : ViewModel() {
     private val authUser = MediatorLiveData<AuthResource<User>>()
