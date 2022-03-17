@@ -51,7 +51,7 @@ class AuthActivity : BaseActivity() {
     }
 
     private fun subscribeObserver() {
-        viewModel.observeAuthUser().observe(this, object : Observer<AuthResource<User>> {
+        viewModel.observeAuthState().observe(this, object : Observer<AuthResource<User>> {
             override fun onChanged(userAuthResource: AuthResource<User>?) {
                 if (userAuthResource != null) {
                     when (userAuthResource.status) {
