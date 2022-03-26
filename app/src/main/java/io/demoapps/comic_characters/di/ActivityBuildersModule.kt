@@ -5,6 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import io.demoapps.comic_characters.di.auth.AuthModule
 import io.demoapps.comic_characters.di.auth.AuthViewModelModule
 import io.demoapps.comic_characters.ui.auth.AuthActivity
+import io.demoapps.comic_characters.ui.main.MainActivity
 
 /**
  * This class tell dagger about all the classes that can be injected with dependencies.
@@ -18,4 +19,7 @@ abstract class ActivityBuildersModule {
         ]
     )
     abstract fun contributeAuthActivity(): AuthActivity
+
+    @ContributesAndroidInjector()
+    abstract fun contributeMainActivity(): MainActivity
 }

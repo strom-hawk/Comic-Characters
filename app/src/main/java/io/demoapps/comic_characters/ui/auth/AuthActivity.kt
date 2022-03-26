@@ -1,5 +1,6 @@
 package io.demoapps.comic_characters.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,6 +10,7 @@ import com.bumptech.glide.RequestManager
 import io.demoapps.comic_characters.R
 import io.demoapps.comic_characters.models.User
 import io.demoapps.comic_characters.ui.base.BaseActivity
+import io.demoapps.comic_characters.ui.main.MainActivity
 import io.demoapps.comic_characters.viewmodel.ViewModelProvidersFactory
 import javax.inject.Inject
 
@@ -36,7 +38,7 @@ class AuthActivity : BaseActivity() {
     private fun initVariables() {
         viewModel = ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
         subscribeObserver()
-        viewModel.authenticateWithId(11)
+        viewModel.authenticateWithId(10)
     }
 
     private fun initViews() {
@@ -62,6 +64,7 @@ class AuthActivity : BaseActivity() {
                             println("--------------hide progressbar, error")
                         }
                         AuthResource.AuthStatus.AUTHENTICATED -> {
+                            onLoginSuccess()
                             println("--------------hide progressbar, user authenticated")
                         }
                         AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
@@ -71,5 +74,10 @@ class AuthActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun onLoginSuccess(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
