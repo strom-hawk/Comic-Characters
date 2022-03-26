@@ -25,7 +25,7 @@ class SessionManager @Inject constructor() {
         }
     }
 
-    private fun logOut() {
+    fun logOut() {
         cachedUser.value = AuthResource.logout()
     }
 

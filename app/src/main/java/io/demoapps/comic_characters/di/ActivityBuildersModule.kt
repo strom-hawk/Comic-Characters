@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import io.demoapps.comic_characters.di.auth.AuthModule
 import io.demoapps.comic_characters.di.auth.AuthViewModelModule
+import io.demoapps.comic_characters.di.main.MainFragmentBuildersModule
 import io.demoapps.comic_characters.ui.auth.AuthActivity
 import io.demoapps.comic_characters.ui.main.MainActivity
 
@@ -20,6 +21,10 @@ abstract class ActivityBuildersModule {
     )
     abstract fun contributeAuthActivity(): AuthActivity
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(
+        modules = [
+            MainFragmentBuildersModule::class
+        ]
+    )
     abstract fun contributeMainActivity(): MainActivity
 }
