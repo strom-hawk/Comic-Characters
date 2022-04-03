@@ -10,16 +10,16 @@ import javax.inject.Inject
 
 
 class AuthViewModel @Inject constructor(
-    private val authApi: AuthApi,
+    //private val authApi: AuthApi,
     private val sessionManager: SessionManager
 ) : ViewModel() {
 
 
-    fun authenticateWithId(userId: Int) {
+/*    fun authenticateWithId(userId: Int) {
         sessionManager.authenticateWithId(queryUserId(userId))
-    }
+    }*/
 
-    private fun queryUserId(userId: Int): LiveData<AuthResource<User>> {
+/*    private fun queryUserId(userId: Int): LiveData<AuthResource<User>> {
         return LiveDataReactiveStreams.fromPublisher(
             authApi.getUser(userId = userId.toString())
                 .onErrorReturn(object : Function<Throwable, User> {
@@ -37,7 +37,7 @@ class AuthViewModel @Inject constructor(
                 })
                 .subscribeOn(Schedulers.io())
         )
-    }
+    }*/
 
     fun observeAuthState(): LiveData<AuthResource<User>> {
         return sessionManager.getAuthUser()

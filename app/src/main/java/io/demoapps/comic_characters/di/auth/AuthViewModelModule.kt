@@ -9,8 +9,9 @@ import io.demoapps.comic_characters.ui.auth.AuthViewModel
 
 @Module
 abstract class AuthViewModelModule {
+
     @Binds
     @IntoMap
     @ViewModelKey(AuthViewModel::class)
-    abstract fun authViewModel(viewModel: AuthViewModel): ViewModel
+    internal abstract fun bindAuthViewModel(viewModel: AuthViewModel): ViewModel
 }

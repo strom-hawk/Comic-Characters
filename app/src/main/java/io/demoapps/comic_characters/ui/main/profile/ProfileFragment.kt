@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import io.demoapps.comic_characters.R
 import io.demoapps.comic_characters.models.User
@@ -14,11 +15,12 @@ import io.demoapps.comic_characters.ui.auth.AuthResource
 import io.demoapps.comic_characters.viewmodel.ViewModelProvidersFactory
 import javax.inject.Inject
 
+
 class ProfileFragment : DaggerFragment() {
     private lateinit var profileViewModel: ProfileViewModel
 
     @Inject
-    lateinit var providersFactory: ViewModelProvidersFactory
+    lateinit var providerFactory: ViewModelProvidersFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,11 +31,12 @@ class ProfileFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        profileViewModel = ViewModelProvider(this, providersFactory).get(ProfileViewModel::class.java)
-        subscribeObserver()
+        profileViewModel = ViewModelProvider(this, providerFactory).get(ProfileViewModel::class.java)
+        //subscribeObserver()
+        println("-------profile")
     }
 
-    private fun subscribeObserver(){
+/*    private fun subscribeObserver(){
         profileViewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner)
         profileViewModel.getAuthenticatedUser().observe(viewLifecycleOwner, object : Observer<AuthResource<User>>{
             override fun onChanged(user: AuthResource<User>?) {
@@ -49,7 +52,7 @@ class ProfileFragment : DaggerFragment() {
                 }
             }
         })
-    }
+    }*/
 
     private fun setUserDetails(user: User?){
         if(user != null){

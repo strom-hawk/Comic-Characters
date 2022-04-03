@@ -18,7 +18,6 @@ import io.demoapps.comic_characters.SessionManager
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
-        AuthModule::class,
         AppModule::class,
         ViewModelFactoryModule::class
     ]

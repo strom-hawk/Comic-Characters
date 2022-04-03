@@ -37,8 +37,9 @@ class AuthActivity : BaseActivity() {
 
     private fun initVariables() {
         viewModel = ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
-        subscribeObserver()
-        viewModel.authenticateWithId(10)
+        //subscribeObserver()
+        //viewModel.authenticateWithId(10)
+        onLoginSuccess()
     }
 
     private fun initViews() {
@@ -52,7 +53,7 @@ class AuthActivity : BaseActivity() {
             .into(ivLoginLogo)
     }
 
-    private fun subscribeObserver() {
+/*    private fun subscribeObserver() {
         viewModel.observeAuthState().observe(this, object : Observer<AuthResource<User>> {
             override fun onChanged(userAuthResource: AuthResource<User>?) {
                 if (userAuthResource != null) {
@@ -74,7 +75,7 @@ class AuthActivity : BaseActivity() {
                 }
             }
         })
-    }
+    }*/
 
     private fun onLoginSuccess(){
         val intent = Intent(this, MainActivity::class.java)

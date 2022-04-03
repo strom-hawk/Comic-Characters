@@ -6,8 +6,14 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-/*
-class ViewModelProvidersFactory
+class ViewModelProvidersFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) :
+    ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        viewModels[modelClass]?.get() as T
+}
+
+/*class ViewModelProvidersFactory
 @Inject constructor(
     private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
@@ -33,11 +39,11 @@ class ViewModelProvidersFactory
     }
 }*/
 
-@Singleton
+/*@Singleton
 class ViewModelProvidersFactory @Inject constructor(
     private val viewModels: MutableMap<Class<out ViewModel>,
             @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         viewModels[modelClass]?.get() as T
-}
+}*/
