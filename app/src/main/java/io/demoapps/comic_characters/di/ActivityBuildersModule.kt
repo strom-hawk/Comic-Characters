@@ -18,7 +18,8 @@ import io.demoapps.comic_characters.ui.main.MainActivity
 abstract class ActivityBuildersModule {
     @ContributesAndroidInjector(
         modules = [
-            AuthViewModelModule::class
+            AuthViewModelModule::class,
+            AuthModule::class
         ]
     )
     abstract fun contributeAuthActivity(): AuthActivity
@@ -26,7 +27,8 @@ abstract class ActivityBuildersModule {
     @ContributesAndroidInjector(
         modules = [
             MainFragmentBuildersModule::class,
-            MainViewModelsModule::class
+            MainViewModelsModule::class,
+            MainModule::class,
         ]
     )
     abstract fun contributeMainActivity(): MainActivity
