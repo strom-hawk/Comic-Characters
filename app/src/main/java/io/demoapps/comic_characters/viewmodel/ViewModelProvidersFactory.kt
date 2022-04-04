@@ -6,44 +6,19 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-class ViewModelProvidersFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) :
+/**
+ * This is a custom view model factory.
+ * We need a custom view model factory for the following reasons:
+ * 1. If the view model has more than one parameter to be initialized.
+ * 2. We need to make our view model aware of the life cycle of an activity or fragment.
+ */
+
+class ViewModelProvidersFactory
+@Inject constructor(
+    private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
+) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         viewModels[modelClass]?.get() as T
 }
-
-/*class ViewModelProvidersFactory
-@Inject constructor(
-    private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        var creator: Provider<ViewModel>? = creators[modelClass]
-        if (creator == null) {
-            for ((key, value) in creators) {
-                if (modelClass.isAssignableFrom(key)) {
-                    creator = value
-                    break
-                }
-            }
-        }
-
-        requireNotNull(creator) { "unknown model class ${modelClass}" }
-
-        return try {
-            creator.get() as T
-        } catch (e: Exception) {
-            throw RuntimeException(e)
-        }
-    }
-}*/
-
-/*@Singleton
-class ViewModelProvidersFactory @Inject constructor(
-    private val viewModels: MutableMap<Class<out ViewModel>,
-            @JvmSuppressWildcards Provider<ViewModel>>
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        viewModels[modelClass]?.get() as T
-}*/

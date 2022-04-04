@@ -8,10 +8,10 @@ import io.demoapps.comic_characters.ui.auth.AuthResource
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
-    //private val sessionManager: SessionManager
+    private val sessionManager: SessionManager
 ): ViewModel() {
 
-/*    fun getAuthenticatedUser(): LiveData<AuthResource<User>> {
+    fun getAuthenticatedUser(): LiveData<AuthResource<User>> {
         return sessionManager.getAuthUser()
-    }*/
+    }
 }

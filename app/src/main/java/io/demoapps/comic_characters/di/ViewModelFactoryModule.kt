@@ -15,14 +15,4 @@ abstract class ViewModelFactoryModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelProvidersFactory): ViewModelProvider.Factory
-
-/*    @Binds
-    @IntoMap
-    @ViewModelKey(AuthViewModel::class)
-    abstract fun authViewModel(viewModel: AuthViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ProfileViewModel::class)
-    abstract fun profileViewModel(viewModel: ProfileViewModel) : ViewModel*/
 }

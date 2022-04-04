@@ -32,11 +32,10 @@ class ProfileFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         profileViewModel = ViewModelProvider(this, providerFactory).get(ProfileViewModel::class.java)
-        //subscribeObserver()
-        println("-------profile")
+        subscribeObserver()
     }
 
-/*    private fun subscribeObserver(){
+    private fun subscribeObserver(){
         profileViewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner)
         profileViewModel.getAuthenticatedUser().observe(viewLifecycleOwner, object : Observer<AuthResource<User>>{
             override fun onChanged(user: AuthResource<User>?) {
@@ -52,11 +51,11 @@ class ProfileFragment : DaggerFragment() {
                 }
             }
         })
-    }*/
+    }
 
     private fun setUserDetails(user: User?){
         if(user != null){
-
+            println("------set user details")
         }
     }
 
