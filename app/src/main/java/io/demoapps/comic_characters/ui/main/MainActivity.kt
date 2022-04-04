@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import io.demoapps.comic_characters.R
 import io.demoapps.comic_characters.ui.base.BaseActivity
+import io.demoapps.comic_characters.ui.main.post.PostFragment
 import io.demoapps.comic_characters.ui.main.profile.ProfileFragment
 
 class MainActivity : BaseActivity() {
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity() {
 
     private fun testFragment(){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.mainContainer, ProfileFragment())
+            .replace(R.id.mainContainer, PostFragment())
             .commit()
     }
 }
