@@ -33,8 +33,7 @@ class PostFragment: DaggerFragment() {
     }
 
     private fun subscribePost(){
-        //postViewModel.observePosts().removeObserver(viewLifecycleOwnerLiveData)
-
+        postViewModel.observePosts().removeObservers(viewLifecycleOwner)
         postViewModel.observePosts().observe(viewLifecycleOwner, object : Observer<MainResource<List<Posts>>> {
             override fun onChanged(listOfPosts: MainResource<List<Posts>>?) {
                 if (listOfPosts != null) {
