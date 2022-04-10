@@ -9,5 +9,5 @@ interface MainApi {
     @GET("posts")
     fun getPostsFromUser(
         @Query("userId") id: Int
-    ): Flowable<Posts>
+    ): Flowable<List<Posts>>
 }
