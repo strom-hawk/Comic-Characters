@@ -2,19 +2,26 @@ package io.demoapps.comic_characters.ui.main
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import io.demoapps.comic_characters.R
 import io.demoapps.comic_characters.ui.base.BaseActivity
 import io.demoapps.comic_characters.ui.main.post.PostFragment
-import io.demoapps.comic_characters.ui.main.profile.ProfileFragment
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initViews()
         testFragment()
+    }
+
+    private fun initViews() {
+        drawerLayout = findViewById(R.id.drawer_layout)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -33,9 +40,24 @@ class MainActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun testFragment(){
+    private fun testFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainContainer, PostFragment())
             .commit()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_profile -> {
+                println("-----profile drawer option clicked")
+            }
+            R.id.nav_post -> {
+                println("-----nav drawer option clicked")
+            }
+        }
+
+        item.isChecked = true
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }
