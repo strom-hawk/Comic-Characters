@@ -5,6 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import io.demoapps.comic_characters.R
 import io.demoapps.comic_characters.ui.base.BaseActivity
@@ -12,16 +14,25 @@ import io.demoapps.comic_characters.ui.main.post.PostFragment
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
-        testFragment()
+        initNavController()
     }
 
     private fun initViews() {
         drawerLayout = findViewById(R.id.drawer_layout)
+        navigationView = findViewById(R.id.nav_view)
+    }
+
+    private fun initNavController(){
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(navigationView, navController)
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -40,19 +51,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return super.onOptionsItemSelected(item)
     }
 
-    private fun testFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.mainContainer, PostFragment())
-            .commit()
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_profile -> {
-                println("-----profile drawer option clicked")
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileFragment)
             }
             R.id.nav_post -> {
-                println("-----nav drawer option clicked")
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.postFragment)
             }
         }
 
