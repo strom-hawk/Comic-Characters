@@ -62,7 +62,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_profile -> {
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileFragment)
+                if(isValidDestination(R.id.profileFragment)){
+                    Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileFragment)
+                }
             }
             R.id.nav_post -> {
                 val navOptions = NavOptions.Builder()
@@ -85,5 +87,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout)
+    }
+
+    private fun isValidDestination(destination: Int): Boolean {
+        return destination !=
+                Navigation.findNavController(this, R.id.nav_host_fragment).currentDestination?.id
     }
 }
