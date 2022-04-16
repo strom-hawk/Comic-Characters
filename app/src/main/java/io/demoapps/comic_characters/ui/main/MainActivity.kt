@@ -28,7 +28,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationView = findViewById(R.id.nav_view)
     }
 
-    private fun initNavController(){
+    private fun initNavController() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
@@ -47,6 +47,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 sessionManager.logOut()
                 return true
             }
+            android.R.id.home -> {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    return true
+                }
+                return false
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -64,5 +71,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         item.isChecked = true
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout)
     }
 }
