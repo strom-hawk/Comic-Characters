@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
@@ -64,7 +65,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileFragment)
             }
             R.id.nav_post -> {
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.postFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.main, true)
+                    .build()
+
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(
+                        R.id.postFragment,
+                        null,
+                        navOptions
+                    )
             }
         }
 
